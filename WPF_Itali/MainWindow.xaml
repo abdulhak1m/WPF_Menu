@@ -1,0 +1,96 @@
+﻿<Window x:Class="WPF_Itali.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Itali"
+        xmlns:materilaDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1080" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        WindowStyle="None" Foreground="White">
+    
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Button.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Button.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    
+    <Grid Background="LightGray">
+        <Grid x:Name="panelHeader" Height="70" VerticalAlignment="Top" Background="#FF202AF3" MouseDown="panelHeader_MouseDown">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="WorkdSkills 2020" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" FontFamily="Centure Gothic"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Abdulkhakim and Itali" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Centure Gothic"/>
+                <materilaDesign:PopupBox Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Rimma" FontFamily="Centure Gothic" FontWeight="Bold" HorizontalAlignment="Center" Foreground="RoyalBlue"/>
+                            <materilaDesign:PackIcon Kind="Heart" HorizontalAlignment="Center" Foreground="Red" Height="25" Width="25" Margin="10"/>
+                        </StackPanel>
+                        <!--<Button Content="Abdulkhakim" FontFamily="Centure Gothic" FontWeight="Bold" HorizontalAlignment="Center" Foreground="RoyalBlue"/>-->
+                        <Separator/>
+                        <Button Content="Settings" FontFamily="Ceture Gothic" FontSize="14" FontWeight="Bold" Foreground="RoyalBlue"/>
+                        <Button x:Name="ButtonClose" Content="Logout" Click="ButtonClose_Click" FontFamily="Ceture Gothic" FontSize="14" FontWeight="Bold" Foreground="RoyalBlue"/>
+                    </StackPanel>
+                </materilaDesign:PopupBox>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FF1029C5">
+            <StackPanel>
+                <Grid Height="150" Background="White">
+                    <Button x:Name="ButtonCloseMenu" VerticalAlignment="Top" HorizontalAlignment="Right" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Collapsed" Click="ButtonCloseMenu_Click">
+                        <materilaDesign:PackIcon Foreground="#FF1029C5" Kind="ArrowLeft"/>
+                    </Button>
+                    <Button x:Name="ButtonOpenMenu" VerticalAlignment="Top" HorizontalAlignment="Right" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonOpenMenu_Click">
+                        <materilaDesign:PackIcon Foreground="#FF1029C5" Kind="Menu"/>
+                    </Button>
+                </Grid>
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListViewItem Height="70" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materilaDesign:PackIcon Kind="Home" Width="25" Height="25" Margin="10" />
+                            <TextBlock Text="Home" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Margin="15 0 0 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="70" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materilaDesign:PackIcon Kind="Message" Width="25" Height="25" Margin="10"/>
+                            <TextBlock Text="Massege" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Margin="15 0 0 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="70" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materilaDesign:PackIcon Kind="Send" Width="25" Height="25" Margin="10"/>
+                            <TextBlock Text="Send" VerticalAlignment="Center" Margin="15 0 0 0" FontSize="14" FontWeight="Bold"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="70" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materilaDesign:PackIcon Kind="Settings" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Settings" Margin="15 0 0 0" VerticalAlignment="Center" FontSize="14" FontWeight="Bold"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
